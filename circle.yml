@@ -17,9 +17,11 @@ dependencies:
 test:
   override:
     - sudo lxc-attach -n "$(docker inspect --format '{{.Id}}' symfonybddworkshop_php_1)" -- bash -c "cd /var/www/symfony-bdd-workshop && composer install -n"
+    - sudo lxc-attach -n "$(docker inspect --format '{{.Id}}' symfonybddworkshop_php_1)" -- bash -c "cd /var/www/symfony-bdd-workshop && ./bin/behat"
+    - sudo lxc-attach -n "$(docker inspect --format '{{.Id}}' symfonybddworkshop_php_1)" -- bash -c "cd /var/www/symfony-bdd-workshop && ./bin/phpspec run"
 
 deployment:
   FEATURE:
     branch: develop
     commands:
-      - echo 'hello'
+      - echo 'no deployment now'
