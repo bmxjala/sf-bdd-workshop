@@ -1,8 +1,7 @@
-
 <html>
 <body>
 {% for banner in banners %}
-    {% if banner.visible %}
+    {% if banner.test == 'true' %}
         <p>{{ banner.id }}</p>
     {% endif %}
 {% endfor %}
