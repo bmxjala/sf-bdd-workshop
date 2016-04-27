@@ -1,4 +1,4 @@
-@web
+@web @javascript
 Feature: Advertisement banners on homepage
     In order to earn coin
     As website owner
@@ -19,6 +19,8 @@ Feature: Advertisement banners on homepage
         And banner "center_banner" exists
         And banner "left_banner" is disabled
         When go to homepage
-        Then I should not see "left_banner"
+        Then print last response
+        And print current URL
+        And I should not see "left_banner"
         And I should see "right_banner"
         And I should see "center_banner"

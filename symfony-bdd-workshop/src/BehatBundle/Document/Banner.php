@@ -53,5 +53,4 @@ class Banner
         return $this->test;
     }
 
-
 }
