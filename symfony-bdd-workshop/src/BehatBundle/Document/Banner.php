@@ -23,12 +23,7 @@ class Banner
     {
         $this->test = 'true';
     }
-
-    public function __construct()
-    {
-        $this->visible = true;
-    }
-
+    
     public function disable()
     {
         $this->test = 'false';
