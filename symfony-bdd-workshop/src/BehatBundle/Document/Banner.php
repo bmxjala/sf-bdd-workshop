@@ -23,8 +23,7 @@ class Banner
     {
         $this->test = 'true';
     }
-
-
+    
     public function disable()
     {
         $this->test = 'false';
@@ -52,6 +51,5 @@ class Banner
     {
         return $this->test;
     }
-
 
 }

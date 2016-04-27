@@ -10,7 +10,8 @@ class BannerRepository extends DocumentRepository implements BannerRepositoryInt
 {
     public function save(Banner $banner)
     {
-        $this->getDocumentManager()->persist($banner);
-        $this->getDocumentManager()->flush();
+        $dm = $this->getDocumentManager();
+        $dm->persist($banner);
+        $dm->flush();
     }
 }

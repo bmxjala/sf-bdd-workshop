@@ -16,11 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new Hip\MandrillBundle\HipMandrillBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new BehatBundle\BehatBundle(),
         );
 

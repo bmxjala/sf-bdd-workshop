@@ -9,10 +9,6 @@ imports:
 parameters:
     locale: en
 
-fos_rest:
-    routing_loader:
-        default_format: json
-
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
@@ -83,34 +79,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-hip_mandrill:
-    api_key: nEblt5rxJAioyC7E9kHj5w
-    disable_delivery: false # useful for dev/test environment. Default value is 'false'
-    # debug: passed to \Mandrill causing it to output curl requests. Useful to see output
-    # from CLI script. Default value is 'false'
-    debug: true
-    default:
-        sender: 'lendo-dev@example.com'
-        sender_name: Lendo Mail Service # Optionally define a sender name (from name)
-#        subaccount: customer-123 # Optionally define a subaccount to use
-    proxy:
-        use: false # when you are behing a proxy. Default value is 'false'
-#        host: example.com
-#        port: 80
-#        user: lendo
-#        password: lendo123
-
-nelmio_api_doc: ~
-
-knp_paginator:
-    page_range: 5                      # default page range used in pagination control
-    default_options:
-        page_name: page                # page query parameter name
-        sort_field_name: sort          # sort field query parameter name
-        sort_direction_name: order     # sort direction query parameter name
-        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
-    template:
-        pagination: AppBundle::pagination.html.twig                       # sliding pagination controls template
-        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig   # sort link template
-        filtration: AppBundle::filtration.html.twig                       # filtration controls template

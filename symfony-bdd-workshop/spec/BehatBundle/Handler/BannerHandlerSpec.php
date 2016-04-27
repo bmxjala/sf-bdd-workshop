@@ -28,8 +28,9 @@ class BannerHandlerSpec extends ObjectBehavior
     {
         $banner = new Banner();
         $bannerRepository->find('left_banner')->willReturn($banner);
+        $banner->visible = false;
         $bannerRepository->save($banner)->shouldBeCalled();
-
+        
         // executor
         $this->disable('left_banner');
 
