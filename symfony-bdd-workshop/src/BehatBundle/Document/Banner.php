@@ -14,15 +14,20 @@ class Banner
      */
     protected $id;
 
-    /** 
-     * @MongoDB\String 
+    /**
+     * @MongoDB\String
      */
-    public $visible = true;
+    protected $test = 'true';
+
+    public function __construct()
+    {
+        $this->test = 'true';
+    }
 
 
     public function disable()
     {
-        $this->visible = false;
+        $this->test = 'false';
 
         return $this;
     }
@@ -31,4 +36,22 @@ class Banner
     {
         $this->id = $bannerId;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+
 }
