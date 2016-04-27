@@ -1,0 +1,36 @@
+{% extends "AppBundle:Dashboard:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">Dashboard</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fi-home"></i></a></li>
+{% endblock %}
+
+{% block content %}
+
+
+
+    <section class="row">
+        <div class="small-4 columns">
+            <div class="callout text-center">
+                <h5 class="lead">Themes</h5>
+                <div class="stat counter">{{ counters.themes }}</div>
+            </div>
+        </div>
+        <div class="small-4 columns">
+            <div class="callout text-center">
+                <h5 class="lead">Templates</h5>
+                <div class="stat counter">{{ counters.templates }}</div>
+            </div>
+        </div>
+        <div class="small-4 columns">
+            <div class="callout text-center">
+                <h5 class="lead">Sent mails</h5>
+                <div class="stat counter">{{ counters.reports }}</div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

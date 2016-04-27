@@ -1,0 +1,97 @@
+{% extends "AppBundle:Reports:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">Message details</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ path('reports_list') }}">Reports</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> {{ message.getTemplateVersion().getName() }}
+    </li>
+{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="small-9 small-centered columns">
+
+            <div class="button-group-inline">
+                <a href="{{ path('reports_list') }}" class="secondary button round" title="Back to list">Back to
+                    list</a>
+            </div>
+
+            <table>
+
+                {% if message.getRecipient().getFullName() is not empty %}
+                    <tr>
+                        <th class="text-left">Recipient name</th>
+                        <td>{{ message.getRecipient().getFullName() }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Recipient email</th>
+                        <td>{{ message.getRecipient().getEmailAddress() }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th class="text-left">Recipient</th>
+                        <td>{{ message.getRecipient() }}</td>
+                    </tr>
+                {% endif %}
+
+                {% if message.getSender().getFullName() is not empty %}
+                    <tr>
+                        <th class="text-left">Sender name</th>
+                        <td>{{ message.getSender().getFullName() }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Sender email</th>
+                        <td>{{ message.getSender().getEmailAddress() }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th class="text-left">Sender</th>
+                        <td>{{ message.getSender() }}</td>
+                    </tr>
+                {% endif %}
+
+                <tr>
+                    <th class="text-left">Template</th>
+                    <td>
+                        <a href="{{ path('editor_template_edit', {'id': message.getTemplateId() }) }}" title="Click to edit">
+                            {{ message.getTemplateVersion().getName() }}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-left">Date</th>
+                    <td>{{ message.getDate().format('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Subject</th>
+                    <td>{{ message.getSubject() }}</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="row" data-equalizer>
+        <div class="small-6 columns">
+            <fieldset class="fieldset" data-equalizer-watch>
+                <legend><strong>Plaintext</strong></legend>
+                {{ message.getText() | nl2br }}
+            </fieldset>
+        </div>
+        <div class="small-6 columns">
+            <fieldset class="fieldset" data-equalizer-watch>
+                <legend><strong>HTML</strong></legend>
+                <iframe width="100%" src="{{ path('reports_message__see_html', {'id': message.getAggregateId()}) }}"></iframe>
+
+                <div class="tiny button-group">
+                    <a href="{{ path('reports_message__see_html', {'id': message.getAggregateId()}) }}" class="hollow primary button" title="Click to see HTML message" target="_blank">See in new tab</a>
+                </div>
+            </fieldset>
+        </div>
+    </section>
+
+{% endblock %}

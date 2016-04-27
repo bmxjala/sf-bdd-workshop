@@ -1,0 +1,89 @@
+editor_template_list:
+  path: /templates
+  defaults:  { _controller: AppBundle:Editor:list }
+
+editor_template_create:
+  path: /templates/create
+  defaults:  { _controller: AppBundle:Editor:create }
+
+editor_template_edit:
+  path: /templates/{id}/edit
+  defaults:  { _controller: AppBundle:Editor:edit }
+  requirements:
+    id: \w+
+
+editor_template_render:
+  path: /templates/{id}/render/{type}
+  defaults:  { _controller: AppBundle:Editor:renderTemplateFormForPreview }
+  requirements:
+    id: \w+
+
+editor_template_send:
+  path: /templates/{id}/send
+  defaults:  { _controller: AppBundle:Editor:renderTemplateFormForMessage }
+  requirements:
+    id: \w+
+
+editor_template_preview:
+  path: /templates/{id}/preview/{type}
+  defaults:  { _controller: AppBundle:Editor:preview }
+  requirements:
+    id: \w+
+
+editor_template_edit_draft:
+  path: /templates/{id}/drafts/{draftid}/edit
+  defaults:  { _controller: AppBundle:Editor:edit }
+  requirements:
+    id: \w+
+
+editor_template_save:
+  path: /templates/{id}/save
+  defaults:  { _controller: AppBundle:Editor:save }
+  requirements:
+    id: \w+
+
+reports_list:
+  path: /reports
+  defaults:  { _controller: AppBundle:Reports:list }
+
+reports_message_details:
+  path: /reports/{id}
+  defaults:  { _controller: AppBundle:Reports:details }
+  requirements:
+    id: \w+
+
+reports_message__see_html:
+  path: /reports/{id}/html
+  defaults:  { _controller: AppBundle:Reports:seeHtml }
+  requirements:
+    id: \w+
+
+mailer_send_template_preview:
+  path: /sendpreview
+  defaults:  { _controller: AppBundle:Mailer:sendPreview }
+
+dashboard_main:
+  path: /dashboard
+  defaults:  { _controller: AppBundle:Dashboard:main }
+
+message:
+  type: rest
+  resource: AppBundle\Controller\Api\MessageController
+  prefix: /api/v1/
+
+template:
+  type: rest
+  resource: AppBundle\Controller\Api\TemplateController
+  prefix: /api/v1/
+
+drafts:
+  type: rest
+  resource: AppBundle\Controller\Api\DraftController
+  prefix: /api/v1/
+
+root:
+  path: /
+  defaults:
+    _controller: FrameworkBundle:Redirect:redirect
+    route: dashboard_main
+    permanent: true

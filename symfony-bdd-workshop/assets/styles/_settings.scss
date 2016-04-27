@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+$body-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+
+$lendo-green: #65b618;
+$lendo-header: #527a25;
+
+$body-background: #f4f7f8;
+$body-font-color: #545454;
+
+$header-color: #1f1f1f;
+
+$primary-color: #0076cd;
+$secondary-color: #00c4d6;
+$success-color: $lendo-green;
+$alert-color: #dd4b39;
+
+$global-radius: 4px;
+
+$anchor-color: #428bca;
+
+$preloader-background: #2F323A;
+
+$form-border-color: #e8e8dd;
+$form-border: 1px solid $form-border-color;
+$form-color: #838383;
+$form-background: #f4f4ec;
+$form-padding: 20px;
+
+$stat-font-size: 3rem;
+
+$callout-background-fade: 85%;
+$callout-border: 1px solid rgba($dark-gray, 0.25);
+$callout-radius: 0;
+
+$offcanvas-size: 200px;
+$offcanvas-background: $body-background;
+$maincontent-shadow: none;
+
+$title-bar-background: $lendo-green;
+
+$offcanvas-exit-background: rgba($preloader-background, 0.25);
+
+$fdatepicker-ui-primary: $primary-color;

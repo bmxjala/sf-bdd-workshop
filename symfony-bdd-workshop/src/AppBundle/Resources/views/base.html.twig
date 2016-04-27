@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Lendo Mail Service{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('/favicon/favicon.ico') }}">
+</head>
+<body>
+
+    <!-- preloader -->
+    <div id="preloader">
+        <div id="status">Loading&hellip;</div>
+    </div>
+    <!-- End of preloader -->
+
+
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+            <div class="off-canvas position-left reveal-for-large" id="offCanvas" data-off-canvas>
+                <div class="profile">
+                    <h3>MAIL <small>service</small></h3>
+                </div>
+
+                <ul class="menu vertical">
+                    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="{{ path('editor_template_list') }}"><i class="fa fa-list"></i> <span>Templates</span></a></li>
+                    <li><a href="{{ path('reports_list') }}"><i class="fa fa-bar-chart"></i> <span>Reports</span></a></li>
+                </ul>
+
+            </div>
+            <div class="off-canvas-content" data-off-canvas-content>
+
+                <div class="title-bar hide-for-large" data-hide-for="small" data-toggle="offCanvas">
+                    <h3><i class="fi-list"></i> MENU</h3>
+                </div>
+
+                <header class="row">
+                    <div class="small-12 columns text-center">
+                        {% block header %}{% endblock %}
+                    </div>
+                </header>
+
+                <nav class="row" aria-label="You are here:" role="navigation">
+                    <ul class="small-12 columns breadcrumbs">
+                        {% block breadcrumbs %}{% endblock %}
+                    </ul>
+                </nav>
+                {% block content %}{% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+
+{% block javascripts %}
+
+    <script src="{{ asset('js/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/foundation.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/datepicker/foundation-datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
+
+{% endblock %}
+</body>
+</html>

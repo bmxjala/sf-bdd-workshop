@@ -1,0 +1,88 @@
+{% extends "AppBundle:Reports:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">Sending reports</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i></a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Reports
+    </li>
+{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="small-12 small-centered columns">
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="primary callout">
+                    <p>{{ flashMessage }}</p>
+                </div>
+            {% endfor %}
+
+            <section class="row">
+                <div class="small-12 small-centered columns">
+                    {{ knp_pagination_filter(pagination, {'recipient':'Recipient', 'sender':'Sender', 'subject':'Subject'}) }}
+                </div>
+            </section>
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+            {% if pagination.getTotalItemCount is not empty %}
+                <table class="hover" id="tableTemplates">
+                    <thead>
+                    <tr>
+                        <th width="260" {% if pagination.isSorted('Recipient') %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Recipient', 'recipient') }}
+                        </th>
+                        <th width="240" {% if pagination.isSorted('Sender') %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Sender', 'sender') }}
+                        </th>
+                        <th width="200">
+                            Template
+                        </th>
+                        <th width="120">
+                            {{ knp_pagination_sortable(pagination, 'Date', 'date') }}
+                        </th>
+                        <th {% if pagination.isSorted('Subject') %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Subject', 'subject') }}
+                        </th>
+                        <th width="100">
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entry in pagination %}
+                        <tr>
+                            <td>{{ entry.getRecipient() }}</td>
+                            <td>{{ entry.getSender() }}</td>
+                            <td>{{ entry.getTemplateVersion().getName() }}</td>
+                            <td>{{ entry.getDate().format('Y-m-d H:i:s') }}</td>
+                            <td>{{ entry.getSubject() }}</td>
+                            <td>
+                                <div class="tiny button-group">
+                                    <a href="{{ path('reports_message_details', {'id': entry.getAggregateId()}) }}" class="hollow primary button" title="Click to see full details of the message">Details</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+
+            {% else %}
+                <div class="callout">
+                    <i class="fi-info"></i> No entries
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+{% endblock %}

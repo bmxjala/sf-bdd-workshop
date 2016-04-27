@@ -1,0 +1,12 @@
+form {
+  border: $form-border;
+  color: $form-color;
+  background-color: $form-background;
+  padding: $form-padding;
+}
+.form-filter {
+  margin-bottom: 2rem;
+  :last-child {
+    margin-bottom: 0;
+  }
+}

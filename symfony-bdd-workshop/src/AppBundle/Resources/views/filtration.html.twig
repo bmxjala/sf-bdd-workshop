@@ -1,0 +1,26 @@
+<form method="get" action="{{ action }}" enctype="application/x-www-form-urlencoded" class="form-filter">
+    <section class="row">
+        <div class="small-3 columns">
+            <select name="{{ filterFieldName }}">
+                {% for field, label in fields %}
+                    <option value="{{ field }}"{% if selectedField == field %} selected="selected"{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="small-5 columns">
+            <div class="input-group">
+                <input class="input-group-field" type="text" value="{{ selectedValue }}" name="{{ filterValueName }}"
+                       placeholder="Search"/>
+                <div class="input-group-button">
+                    <button type="submit" class="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="small-2 columns">
+            <input value="" id="dateFrom" name="date_from" type="text" placeholder="From">
+        </div>
+        <div class="small-2 columns">
+            <input value="" id="dateTo" name="date_to" type="text" placeholder="To">
+        </div>
+    </section>
+</form>

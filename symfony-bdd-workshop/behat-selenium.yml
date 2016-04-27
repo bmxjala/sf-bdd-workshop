@@ -1,0 +1,22 @@
+default:
+  suites:
+    javascript:
+      paths: [ %paths.base%/features ]
+      contexts:
+        - WebContext:
+      kernel: @kernel
+      filters:
+        tags: @javascript
+
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: test
+    Behat\MinkExtension:
+      base_url: http://192.168.99.100/app_test.php/
+      browser_name: firefox
+      selenium2:
+        wd_host: 192.168.99.100:4444/wd/hub
+    Codifico\ParameterBagExtension\ServiceContainer\ParameterBagExtension:
+      parameter_bag:
+        class: Codifico\ParameterBagExtension\Bag\InMemoryPlaceholderBag

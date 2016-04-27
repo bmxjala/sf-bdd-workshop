@@ -1,0 +1,2 @@
+app:
+    resource: "@BehatBundle/Resources/config/routing.yml"

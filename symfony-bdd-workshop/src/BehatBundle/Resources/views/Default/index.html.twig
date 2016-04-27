@@ -1,0 +1,10 @@
+
+<html>
+<body>
+{% for banner in banners %}
+    {% if banner.visible %}
+        <p>{{ banner.id }}</p>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

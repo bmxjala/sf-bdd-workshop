@@ -1,0 +1,45 @@
+services:
+  mailer:
+    class: AppBundle\Service\HipMandrillMailer
+    arguments: ['@hip_mandrill.dispatcher']
+
+  event_bus:
+    class: Domain\EventModel\EventBus
+    calls:
+      - [registerListener, ["@listener.template_list", "@listener.template_draft_list", "@listener.template_render_form", "@listener.default_theme", "@listener.theme_list", "@listener.sending_reports"]]
+
+  event_storage:
+    class: Infrastructure\ODM\ODMEventStorage
+    arguments: ['@doctrine.odm.mongodb.document_manager', '@doctrine_mongodb']
+
+  projection_storage:
+    class: Infrastructure\ODM\ODMProjectionStorage
+    arguments: ['@doctrine.odm.mongodb.document_manager', '@doctrine_mongodb']
+
+  bulk_projection_storage:
+    class: Infrastructure\ODM\ODMBulkProjectionStorage
+    arguments: ['@doctrine.odm.mongodb.document_manager', '@doctrine_mongodb']
+
+  listener.template_list:
+    class: Domain\ReadModel\Listener\TemplateListListener
+    arguments: ['@event_bus', '@projection_storage']
+
+  listener.template_draft_list:
+    class: Domain\ReadModel\Listener\TemplateDraftListListener
+    arguments: ['@event_bus', '@projection_storage']
+
+  listener.template_render_form:
+    class: Domain\ReadModel\Listener\TemplateRenderFormListener
+    arguments: ['@event_bus', '@projection_storage']
+
+  listener.default_theme:
+    class: Domain\ReadModel\Listener\DefaultThemeListener
+    arguments: ['@event_bus', '@projection_storage']
+
+  listener.theme_list:
+    class: Domain\ReadModel\Listener\ThemeListListener
+    arguments: ['@event_bus', '@projection_storage']
+
+  listener.sending_reports:
+    class: Domain\ReadModel\Listener\SendingReportsListener
+    arguments: ['@event_bus', '@projection_storage']

@@ -1,0 +1,129 @@
+// Sass utilities
+@import '../bower_components/foundation-sites/scss/util/util';
+
+// Global variables and styles
+@import '../bower_components/foundation-sites/scss/global';
+
+// Local variables and styles
+@import "settings";
+
+@import "../bower_components/font-awesome/scss/font-awesome";
+
+@import "../bower_components/foundation-datepicker/css/foundation-datepicker.scss";
+
+// Components
+@import '../bower_components/foundation-sites/scss/grid/grid';
+@import '../bower_components/foundation-sites/scss/typography/typography';
+@import '../bower_components/foundation-sites/scss/forms/forms';
+@import '../bower_components/foundation-sites/scss/components/visibility';
+@import '../bower_components/foundation-sites/scss/components/button';
+@import '../bower_components/foundation-sites/scss/components/button-group';
+@import '../bower_components/foundation-sites/scss/components/table';
+@import '../bower_components/foundation-sites/scss/components/callout';
+@import '../bower_components/foundation-sites/scss/components/close-button';
+@import '../bower_components/foundation-sites/scss/components/off-canvas';
+@import '../bower_components/foundation-sites/scss/components/menu';
+@import '../bower_components/foundation-sites/scss/components/breadcrumbs';
+@import '../bower_components/foundation-sites/scss/components/top-bar';
+@import '../bower_components/foundation-sites/scss/components/pagination';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-visibility-classes;
+@include foundation-button;
+@include foundation-button-group;
+@include foundation-forms;
+@include foundation-table;
+@include foundation-callout;
+@include foundation-close-button;
+@include foundation-off-canvas;
+@include foundation-menu;
+@include foundation-breadcrumbs;
+@include foundation-top-bar;
+@include foundation-pagination;
+
+table {
+  width: 100%;
+  .button,
+  .button-group {
+    margin-bottom: 0;
+  }
+}
+.button-group-inline {
+  @include button-group;
+  display: inline-block;
+}
+
+/*
+Preloader
+ */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $preloader-background;
+  z-index: 9999;
+}
+#status {
+  font-weight: bold;
+  text-align: center;
+  color: $white;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -100px 0 0 -100px;
+}
+
+.header {
+  color: $lendo-header;
+  margin-bottom: 5px;
+  font-size:rem-calc(36);
+  line-height:rem-calc(72);
+}
+
+iframe {
+  border: 0 none;
+  + .button-group {
+    margin-bottom:0;
+  }
+}
+
+.title-bar {
+  background: $title-bar-background;
+  padding: 0.9rem;
+  color: $white;
+}
+
+th > a {
+  &.sortable,
+  &.asc,
+  &.desc {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    &::after {
+      @include fa-icon();
+      position: absolute;
+      right: -5px;
+      line-height: inherit;
+    }
+  }
+
+  &.sortable::after {
+    content: $fa-var-sort;
+  }
+  &.desc::after {
+    content: $fa-var-sort-desc;
+  }
+  &.asc::after {
+    content: $fa-var-sort-asc;
+  }
+}
+
+@import "form";
+@import "dashboard";

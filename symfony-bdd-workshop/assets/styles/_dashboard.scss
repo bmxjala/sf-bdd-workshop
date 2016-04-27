@@ -1,0 +1,30 @@
+.off-canvas-wrapper,
+.off-canvas-wrapper-inner {
+  height:100%;
+}
+.off-canvas-content {
+  background: $white;
+  min-height: 100%;
+}
+
+.profile,
+.title-bar {
+  background: $lendo-green;
+  margin: 0;
+  padding: 0;
+  z-index: 99;
+
+  h3 {
+    line-height: 4;
+    padding: 0 1rem;
+    color: $white;
+    opacity: 0.9;
+    letter-spacing: 5px;
+    font-weight: normal;
+    font-size: 18px;
+    small {
+      color: $white;
+    }
+  }
+}
+

@@ -1,0 +1,97 @@
+{% extends "AppBundle:Editor:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">Edit template</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ path('editor_template_list') }}">Templates</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span>
+        {% if template.getCurrentVersion is not empty %}
+            {{ template.getCurrentVersion().getName() }}
+        {% else %}
+            Create new
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="small-10 small-centered columns">
+
+            <div class="button-group-inline">
+                <a href="{{ path('editor_template_list') }}" class="secondary button round" title="Back to list">Back to
+                    list</a>
+            </div>
+
+                {% if template.getCurrentVersion is not empty %}
+                    <div class="button-group-inline">
+                        <a href="{{ path('editor_template_render', {'id': templateid, 'type': 'text'}) }}" class="primary button round" title="Click to preview plaintext">Preview plaintext</a>
+                        <a href="{{ path('editor_template_render', {'id': templateid, 'type': 'html'}) }}" class="primary button round" title="Click to preview HTML">Preview HTML</a>
+                        <a href="{{ path('editor_template_send', {'id': template.getAggregateId}) }}" class="success button round" title="Click to send test message">Send test message</a>
+                    </div>
+                {% endif %}
+
+
+            {{ form_start(form, {'attr': {'id': 'templateForm'} }) }}
+
+            <div class="row">
+                <div class="small-3 columns">
+                    {{ form_label(form.name, null, {
+                        'label_attr': {'class': 'text-right middle'}
+                    }) }}
+                </div>
+                <div class="small-9 columns">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-3 columns">
+                    {{ form_label(form.theme, null, {
+                        'label_attr': {'class': 'text-right middle'}
+                    }) }}
+                </div>
+                <div class="small-9 columns">
+                    {{ form_widget(form.theme) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-3 columns">
+                    {{ form_label(form.plaintext_content, null, {
+                        'label_attr': {'class': 'text-right middle'}
+                    }) }}
+                </div>
+                <div class="small-9 columns">
+                    {{ form_widget(form.plaintext_content, {'attr': {'cols': '5', 'rows': '8'}}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-3 columns">
+                    {{ form_label(form.html_content, null, {
+                        'label_attr': {'class': 'text-right middle'}
+                    }) }}
+                </div>
+                <div class="small-9 columns">
+                    {{ form_widget(form.html_content, {'attr': {'cols': '5', 'rows': '8'}}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-9 small-offset-3 columns">
+                    {{ form_widget(form.save, {'attr': {'class': 'button round'}}) }}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+
+        </div>
+    </section>
+
+{% endblock %}

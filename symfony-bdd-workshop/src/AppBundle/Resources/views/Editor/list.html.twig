@@ -1,0 +1,98 @@
+{% extends "AppBundle:Editor:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">List of templates</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i></a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> Templates
+    </li>
+{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="small-12 small-centered columns">
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="primary callout">
+                    <p>{{ flashMessage }}</p>
+                </div>
+            {% endfor %}
+
+
+            <a href="{{ path('editor_template_create') }}" class="button" title="Add new template">Create new template</a>
+
+            {% if templates is not empty %}
+                <table class="hover" id="tableTemplates">
+                    <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th width="240">
+                            Theme
+                        </th>
+                        <th width="200">
+                            Author
+                        </th>
+                        <th width="180">
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for template in templates %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('editor_template_edit', {'id': template.getAggregateId}) }}"
+                                   title="Click to edit">{{ template.name }}</a>
+                            </td>
+                            <td>
+                                {{ template.themeName }}
+                            </td>
+                            <td>
+                                {{ template.author }}
+                            </td>
+                            <td>
+                                <div class="tiny button-group">
+                                <a href="{{ path('editor_template_render', {'id': template.getAggregateId, 'type': 'text'}) }}" class="hollow primary button" title="Click to preview plaintext">Plain</a>
+                                <a href="{{ path('editor_template_render', {'id': template.getAggregateId, 'type': 'html'}) }}" class="hollow primary button" title="Click to preview HTML">HTML</a>
+                                <a href="{{ path('editor_template_send', {'id': template.getAggregateId}) }}" class="hollow success button" title="Click to send test message">Send</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="callout">
+                    <i class="fi-alert"></i> No templates
+                </div>
+            {% endif %}
+
+            {% if drafts is not empty %}
+                <h3>Your drafts</h3>
+                <table class="hover" id="tableTemplateDrafts">
+                    <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for draft in drafts  %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('editor_template_edit', {'id': draft.getAggregateId}) }}" title="Click to edit">{{ draft.name }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

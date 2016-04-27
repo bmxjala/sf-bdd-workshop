@@ -1,0 +1,21 @@
+default:
+  suites:
+    web:
+      paths: [ %paths.base%/features ]
+      contexts:
+        - WebContext:
+          kernel: @kernel
+      filters:
+        tags: @web
+
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: test
+    Behat\MinkExtension:
+      sessions:
+        default:
+          symfony2: ~
+    Codifico\ParameterBagExtension\ServiceContainer\ParameterBagExtension:
+      parameter_bag:
+        class: Codifico\ParameterBagExtension\Bag\InMemoryPlaceholderBag

@@ -1,0 +1,20 @@
+{
+  "name": "LendoSTPGdansk/sms-service",
+  "authors": [
+    "Remigiusz Specht <remigiusz.specht@schibsted.pl>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "6.1.2",
+    "font-awesome": "*",
+    "waypoints": "*",
+    "counter-up": "*",
+    "foundation-datepicker": "*"
+  }
+}

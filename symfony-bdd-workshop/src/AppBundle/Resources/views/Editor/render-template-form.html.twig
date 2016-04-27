@@ -1,0 +1,30 @@
+{% extends "AppBundle:Editor:base.html.twig" %}
+
+{% block header %}
+    <h1 class="header">{% if context == 'preview' %}Preview template{% elseif context == 'message' %}Send test message{% endif %}</h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('dashboard_main') }}"><i class="fa fa-home"></i></a></li>
+    <li><a href="{{ path('editor_template_list') }}">Templates</a></li>
+    <li><a href="{{ path('editor_template_edit', {'id': templateid }) }}">{{ template.name }}</a></li>
+    <li>
+        <span class="show-for-sr">Current: </span> {% if context == 'preview' %}Preview template{% elseif context == 'message' %}Send test message{% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="small-10 small-centered columns">
+            {{ form_start(form) }}
+
+            <div class="row">
+                <div class="small-6 small-centered columns">
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

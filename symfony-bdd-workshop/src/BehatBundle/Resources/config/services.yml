@@ -1,0 +1,10 @@
+services:
+  behatbanner.repository.banner_repository:
+    class: BehatBundle\Repository\BannerRepository
+    factory_service: doctrine.odm.mongodb.document_manager
+    factory_method: getRepository
+    arguments:
+      - BehatBundle\Document\Banner
+  behatbanner.config_handler:
+    class: 'BehatBundle\Handler\BannerHandler'
+    arguments: ['@behatbanner.repository.banner_repository']
