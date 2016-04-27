@@ -1,0 +1,5 @@
+image: nuordo/docker-php
+cache:
+  - /home/ubuntu/.composer/cache
+script:
+  - echo "test"
